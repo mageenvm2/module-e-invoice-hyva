@@ -1,0 +1,19 @@
+/**
+ * Copyright © MageEnv. All rights reserved.
+ * Licensed under the Open Software License 3.0 (OSL-3.0). See LICENSE.txt.
+ *
+ * Every rule is scoped to .mageenv-ei--hyva, so nothing else on the page changes.
+ */
+.mageenv-ei--hyva.mageenv-ei-account { margin: 2rem 0 1.75rem; }
+.mageenv-ei--hyva.mageenv-ei-account .field { margin-bottom: 1rem; }
+.mageenv-ei--hyva .mageenv-ei-account__intro { color: #4b5563; font-size: .875rem; margin: 0 0 1rem; }
+.mageenv-ei--hyva .mageenv-ei-account__note { color: #6b7280; font-size: .8125rem; margin: .375rem 0 0; }
+.mageenv-ei--hyva.mageenv-ei-downloads { margin-top: 1.5rem; padding: 1rem 1.25rem; }
+.mageenv-ei--hyva .mageenv-ei-downloads__title { font-size: 1.125rem; font-weight: 600; margin: 0 0 .75rem; }
+.mageenv-ei--hyva .mageenv-ei-downloads__list { list-style: none; margin: 0; padding: 0; }
+.mageenv-ei--hyva .mageenv-ei-downloads__item { align-items: baseline; border-top: 1px solid #e5e7eb; display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; justify-content: space-between; padding: .625rem 0; }
+.mageenv-ei--hyva .mageenv-ei-downloads__item:first-child { border-top: 0; }
+.mageenv-ei--hyva .mageenv-ei-downloads__name { font-weight: 600; }
+.mageenv-ei--hyva .mageenv-ei-downloads__links { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
+.mageenv-ei--hyva .mageenv-ei-downloads__link { text-decoration: underline; text-underline-offset: 2px; }
+.mageenv-ei--hyva .mageenv-ei-downloads__link:hover, .mageenv-ei--hyva .mageenv-ei-downloads__link:focus-visible { text-decoration-thickness: 2px; }

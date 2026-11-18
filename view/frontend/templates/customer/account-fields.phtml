@@ -1,0 +1,61 @@
+<?php
+/**
+ * Copyright © MageEnv. All rights reserved.
+ * Licensed under the Open Software License 3.0 (OSL-3.0). See LICENSE.txt.
+ */
+/** @var \MageEnv\EInvoice\Block\Customer\AccountFields $block */
+/** @var \Magento\Framework\Escaper $escaper */
+if (!$block->isEnabled()) {
+    return;
+}
+$codes = $block->getCodes();
+$format = $block->getValue($codes['format']);
+?>
+<fieldset class="fieldset mageenv-ei--hyva mageenv-ei-account">
+    <legend class="legend"><span><?= $escaper->escapeHtml(__('E-Invoices for Your Business')) ?></span></legend>
+    <p class="mageenv-ei-account__intro">
+        <?= $escaper->escapeHtml(__('Optional. Used for the e-invoices (XRechnung / ZUGFeRD) we send you.')) ?>
+    </p>
+    <div class="field">
+        <label class="label" for="<?= $escaper->escapeHtmlAttr($codes['reference']) ?>">
+            <span><?= $escaper->escapeHtml(__('Default Order Reference or Leitweg-ID')) ?></span>
+        </label>
+        <div class="control">
+            <input type="text" class="form-input" maxlength="64"
+                   id="<?= $escaper->escapeHtmlAttr($codes['reference']) ?>"
+                   name="<?= $escaper->escapeHtmlAttr($codes['reference']) ?>"
+                   value="<?= $escaper->escapeHtmlAttr($block->getValue($codes['reference'])) ?>">
+        </div>
+    </div>
+    <div class="field">
+        <label class="label" for="<?= $escaper->escapeHtmlAttr($codes['email']) ?>">
+            <span><?= $escaper->escapeHtml(__('Email for E-Invoices (Accounts Payable)')) ?></span>
+        </label>
+        <div class="control">
+            <input type="email" class="form-input" autocomplete="off"
+                   id="<?= $escaper->escapeHtmlAttr($codes['email']) ?>"
+                   name="<?= $escaper->escapeHtmlAttr($codes['email']) ?>"
+                   value="<?= $escaper->escapeHtmlAttr($block->getValue($codes['email'])) ?>"
+                   aria-describedby="mageenv-ei-email-note">
+        </div>
+        <p class="mageenv-ei-account__note" id="mageenv-ei-email-note">
+            <?= $escaper->escapeHtml(__('Gets a copy of every invoice email.')) ?>
+        </p>
+    </div>
+    <div class="field">
+        <label class="label" for="<?= $escaper->escapeHtmlAttr($codes['format']) ?>">
+            <span><?= $escaper->escapeHtml(__('Preferred Format')) ?></span>
+        </label>
+        <div class="control">
+            <select class="form-select" id="<?= $escaper->escapeHtmlAttr($codes['format']) ?>"
+                    name="<?= $escaper->escapeHtmlAttr($codes['format']) ?>">
+                <?php foreach ($block->getFormatOptions() as $option): ?>
+                    <option value="<?= $escaper->escapeHtmlAttr((string)$option['value']) ?>"
+                        <?= (string)$option['value'] === $format ? 'selected' : '' ?>>
+                        <?= $escaper->escapeHtml($option['label']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+</fieldset>

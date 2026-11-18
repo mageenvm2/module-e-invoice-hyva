@@ -1,0 +1,43 @@
+<?php
+/**
+ * Copyright © MageEnv. All rights reserved.
+ * Licensed under the Open Software License 3.0 (OSL-3.0). See LICENSE.txt.
+ */
+/** @var \MageEnv\EInvoice\Block\Order\Downloads $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$documents = $block->getDocuments();
+if ($documents === []) {
+    return;
+}
+$isCredit = $block->getData('entity_type') === 'creditmemo';
+?>
+<section class="card mageenv-ei--hyva mageenv-ei-downloads" aria-labelledby="mageenv-ei-downloads-title">
+    <h2 class="mageenv-ei-downloads__title" id="mageenv-ei-downloads-title">
+        <?= $escaper->escapeHtml(__('E-Invoices')) ?>
+    </h2>
+    <ul class="mageenv-ei-downloads__list">
+        <?php foreach ($documents as $doc): ?>
+            <?php
+            $number = (string)$doc->getIncrementId();
+            $name = $isCredit ? __('Credit note %1', $number) : __('Invoice %1', $number);
+            ?>
+            <li class="mageenv-ei-downloads__item">
+                <span class="mageenv-ei-downloads__name"><?= $escaper->escapeHtml($name) ?></span>
+                <span class="mageenv-ei-downloads__links">
+                    <?php if ($doc->getPdfPath()): ?>
+                        <a class="mageenv-ei-downloads__link"
+                           href="<?= $escaper->escapeUrl($block->getDownloadUrl($doc, 'pdf')) ?>">
+                            <?= $escaper->escapeHtml(__('ZUGFeRD PDF')) ?>
+                        </a>
+                    <?php endif; ?>
+                    <?php if ($doc->getXmlPath()): ?>
+                        <a class="mageenv-ei-downloads__link"
+                           href="<?= $escaper->escapeUrl($block->getDownloadUrl($doc, 'xml')) ?>">
+                            <?= $escaper->escapeHtml(__('XRechnung XML')) ?>
+                        </a>
+                    <?php endif; ?>
+                </span>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</section>
